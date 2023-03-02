@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./app.js"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-9 col-12 m-auto">
+                <div class="d-flex contents px-3 py-4">
+                    <div class="nav flex-column nav-pills pr-3" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" data-toggle="pill" href="#bai-1" role="tab" aria-controls="bai-1"
+                            aria-selected="true">Bài 1</a>
+                        <a class="nav-link" data-toggle="pill" href="#bai-2" role="tab" aria-controls="bai-2"
+                            aria-selected="false">Bài 2</a>
+                        <a class="nav-link" data-toggle="pill" href="#bai-3" role="tab" aria-controls="bai-3"
+                            aria-selected="false">Bài 3</a>
+                        <a class="nav-link" data-toggle="pill" href="#bai-4" role="tab" aria-controls="bai-4"
+                            aria-selected="false">Bài 4</a>
+                        <a class="nav-link" data-toggle="pill" href="#bai-5" role="tab" aria-controls="bai-5"
+                            aria-selected="false">Bài 5</a>
+                    </div>
+                    <div class="tab-content position-relative pl-3 w-100">
+                        <div class="tab-pane fade show active" id="bai-1" role="tabpanel">
+                            <h4>Tính tiền lương nhân viên</h4>
+                            <hr>
+                            <div class="form-group">
+                                <label for="salary_per_day">Lương 1 ngày:</label>
+                                <input type="number" class="form-control" default-value="100000" value="100000"
+                                    id="salary_per_day">
+                            </div>
+                            <div class="form-group">
+                                <label for="day_works">Số ngày làm:</label>
+                                <div class="alert alert-danger alert-error-day-works" style="display: none"></div>
+                                <input type="number" class="form-control" placeholder="Số ngày" id="day_works">
+                            </div>
+                            <div class="alert alert-success alert-salary" style="display: none"></div>
+                            <div class="text-center">
+                                <button class="btn btn-primary" onclick="Bai1.submit()">Tính lương</button>
+                                <button class="btn btn-secondary" onclick="Bai1.reset()">Reset</button>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="bai-2" role="tabpanel">
+                            <h4>Tính giá trị trung bình</h4>
+                            <hr>
+                            <div class="area-input-number-multi">
+                                <div class="form-group">
+                                    <label for="number_1">Số thứ 1:</label>
+                                    <input type="number" class="form-control" value="" id="number_1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="number_2">Số thứ 2:</label>
+                                    <input type="number" class="form-control" value="" id="number_2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="number_3">Số thứ 3:</label>
+                                    <input type="number" class="form-control" value="" id="number_3">
+                                </div>
+                                <div class="form-group">
+                                    <label for="number_4">Số thứ 4:</label>
+                                    <input type="number" class="form-control" value="" id="number_4">
+                                </div>
+                                <div class="form-group">
+                                    <label for="number_5">Số thứ 5:</label>
+                                    <input type="number" class="form-control" value="" id="number_5">
+                                </div>
+                            </div>
+                            <div class="alert alert-success alert-average-value" style="display: none"></div>
+                            <div class="text-center">
+                                <button class="btn btn-primary" onclick="Bai2.submit()">Tính trung bình</button>
+                                <button class="btn btn-secondary" onclick="Bai2.reset()">Reset</button>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="bai-3" role="tabpanel">
+                            <h4>Quy đổi tiền</h4>
+                            <hr>
+                            <div class="form-group">
+                                <label for="money_exchange">Số tiền:</label>
+                                <input type="number" class="form-control" placeholder="Nhập số tiền USD"
+                                    id="money_exchange">
+                            </div>
+                            <div class="alert alert-success alert-money-exchange" style="display: none"></div>
+                            <div class="text-center">
+                                <button class="btn btn-primary" onclick="Bai3.submit()">Quy đổi</button>
+                                <button class="btn btn-secondary" onclick="Bai3.reset()">Reset</button>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="bai-4" role="tabpanel">
+                            <h4>Tính chu vi, diện tích hình chữ nhật</h4>
+                            <hr>
+                            <div class="area-input-number-rectangle">
+                                <div class="form-group">
+                                    <label for="rectangle_length">Chiều dài:</label>
+                                    <input type="number" class="form-control" value="" id="rectangle_length">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rectangle_width">Chiều rộng:</label>
+                                    <input type="number" class="form-control" value="" id="rectangle_width">
+                                </div>
+                            </div>
+                            <div class="alert alert-success alert-rectangle-data" style="display: none"></div>
+                            <div class="text-center">
+                                <button class="btn btn-primary" onclick="Bai4.submit()">Tính</button>
+                                <button class="btn btn-secondary" onclick="Bai4.reset()">Reset</button>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="bai-5" role="tabpanel">
+                            <h4>Tính tổng 2 ký số</h4>
+                            <hr>
+                            <div class="form-group">
+                                <label for="number_calc_5">Số:</label>
+                                <input type="number" class="form-control" placeholder="Nhập số có 2 chữ số"
+                                    id="number_calc_5">
+                            </div>
+                            <div class="alert alert-danger alert-danger-number-5" style="display: none"></div>
+                            <div class="alert alert-success alert-number-5" style="display: none"></div>
+                            <div class="text-center">
+                                <button class="btn btn-primary" onclick="Bai5.submit()">Quy đổi</button>
+                                <button class="btn btn-secondary" onclick="Bai5.reset()">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
