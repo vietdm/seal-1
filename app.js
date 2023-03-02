@@ -153,6 +153,7 @@ const Bai5 = {
         CM.get('.alert-number-5').style.display = 'none';
     },
     reset() {
+        this.hideAlert();
         const input = CM.get('#number_calc_5');
         input.value = '';
         input.focus();
