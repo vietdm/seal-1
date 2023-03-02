@@ -15,35 +15,41 @@ const CM = {
     fixedNumber(number, length = 2) {
         if (this.isInt(number)) return number;
         return number.toFixed(length);
+    },
+    show(el, display = 'block') {
+        el.style.display = display;
+    },
+    hide(el) {
+        el.style.display = 'none';
     }
 }
 const Bai1 = {
     submit() {
         const alertError = CM.get('.alert-error-day-works');
         const alertSalary = CM.get('.alert-salary');
-        alertError.style.display = 'none';
-        alertSalary.style.display = 'none';
+        CM.hide(alertError);
+        CM.hide(alertSalary);
 
         const dayWorks = CM.get('#day_works').value.trim();
-        if (dayWorks === '') {
-            alertError.innerText = 'Số ngày làm việc phải là 1 số!';
-            alertError.style.display = 'block';
+        if (dayWorks === '' || parseInt(dayWorks) < 0) {
+            alertError.innerText = 'Số ngày làm việc phải là 1 số dương!';
+            CM.show(alertError);
             return;
         }
 
         const salaryPerDay = parseInt(CM.get('#salary_per_day').value.trim());
 
-        const salary = parseInt(dayWorks) * salaryPerDay;
+        const salary = parseFloat(dayWorks) * salaryPerDay;
         alertSalary.innerText = `Lương của bạn là: ${CM.formatMoney(salary)}`;
-        alertSalary.style.display = 'block';
+        CM.show(alertSalary)
     },
     reset() {
         const alertError = CM.get('.alert-error-day-works');
         const alertSalary = CM.get('.alert-salary');
         const input = CM.get('#day_works');
         const salaryPerDayInput = CM.get('#salary_per_day');
-        alertError.style.display = 'none';
-        alertSalary.style.display = 'none';
+        CM.hide(alertError);
+        CM.hide(alertSalary);
         input.value = '';
         input.focus();
 
@@ -74,14 +80,16 @@ const Bai2 = {
 
         let averageValue = (totalSumNumber / countNumberValid) || 0;;
         alertResult.innerText = `Giá trị trung bình của ${countNumberValid} số là: ${CM.fixedNumber(averageValue)}`;
-        alertResult.style.display = 'block';
+        CM.show(alertResult);
     },
     reset() {
         const areaInput = CM.get('.area-input-number-multi');
         CM.getAll('input', areaInput).forEach((input) => {
             input.value = '';
         });
-        CM.get('.alert-average-value').style.display = 'none';
+        CM.hide(
+            CM.get('.alert-average-value')
+        );
         CM.get('input', areaInput).focus();
     }
 }
@@ -93,11 +101,11 @@ const Bai3 = {
         let moneyExchange = CM.get('#money_exchange').value.trim();
         moneyExchange = parseFloat(moneyExchange) || 0;
         const viMoney = this.usdRate * moneyExchange;
-        alertResult.style.display = 'block';
+        CM.show(alertResult);
         alertResult.innerText = `${moneyExchange} USD = ${CM.formatMoney(viMoney)} VND`;
     },
     reset() {
-        CM.get('.alert-money-exchange').style.display = 'none';
+        CM.hide(CM.get('.alert-money-exchange'));
         CM.get('#money_exchange').value = '';
         CM.get('#money_exchange').focus();
     }
@@ -115,14 +123,14 @@ const Bai4 = {
         const perimeter = 2 * (length + width);
         const acreage = length * width;
 
-        alertResult.style.display = 'block';
+        CM.show(alertResult);
         alertResult.innerText = `Chu vi: ${CM.fixedNumber(perimeter)} - Diện tích: ${CM.fixedNumber(acreage)}`
     },
     reset() {
         CM.get('#rectangle_width').value = '';
         CM.get('#rectangle_length').value = '';
         CM.get('#rectangle_length').focus();
-        CM.get('.alert-rectangle-data').style.display = 'none';
+        CM.hide(CM.get('.alert-rectangle-data'));
     }
 }
 
@@ -134,7 +142,7 @@ const Bai5 = {
         if (number.length !== 2 || parseInt(number) < 0) {
             const dangerAlert = CM.get('.alert-danger-number-5');
             dangerAlert.innerText = 'Số phải là số nguyên dương có 2 chữ số!';
-            dangerAlert.style.display = 'block';
+            CM.show(dangerAlert);
             input.focus();
             return;
         }
@@ -146,11 +154,11 @@ const Bai5 = {
 
         const resultAlert = CM.get('.alert-number-5');
         resultAlert.innerText = 'Tổng 2 ký số là: ' + sum;
-        resultAlert.style.display = 'block';
+        CM.show(resultAlert);
     },
     hideAlert() {
-        CM.get('.alert-danger-number-5').style.display = 'none';
-        CM.get('.alert-number-5').style.display = 'none';
+        CM.hide(CM.get('.alert-danger-number-5'));
+        CM.hide(CM.get('.alert-number-5'));
     },
     reset() {
         this.hideAlert();
